@@ -1,0 +1,46 @@
+<div class="col-md-8 m-auto">
+  <form [noValidate]="false"  #formulario="ngForm"  (ngSubmit)="altaPelicula()">
+  <div class="mb-3">
+  <label for="titulo" class="form-label">Título</label>
+  <input type="text" [(ngModel)]="pelicula.titulo" class="form-control" id="titulo" name="titulo" required #titulo="ngModel" >
+  <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)"  class="alert alert-danger">
+    <div *ngIf="titulo.errors"> El titulo es obligatorio</div>
+  </div>
+  </div>
+  <div class="mb-3">
+  <label for="direccion" class="form-label">Dirección</label>
+  <input type="text" [(ngModel)]="pelicula.direccion" class="form-control" id="direccion" name="direccion" required #direccion="ngModel">
+  <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)"  class="alert alert-danger">
+    <div *ngIf="direccion.errors"> La direccion es obligatorio</div>
+  </div>
+  </div>
+  <div class="mb-3">
+  <label for="anio" class="form-label">Año de estreno</label>
+  <input type="number" [(ngModel)]="pelicula.anio" class="form-control" id="anio" name="anio" min='1940' max='2100' required #anio="ngModel">
+  <div *ngIf="anio.invalid && (anio.dirty || anio.touched)"  class="alert alert-danger">
+    <div *ngIf="anio.errors"> Año es obligatorio</div>
+    <div *ngIf="anio.errors"> Año debe ser superior o igual a 1940</div>
+    <div *ngIf="anio.errors">Año debe ser inferior o igual a 2100</div>
+  </div>
+  </div>
+  <div class="mb-3">
+  <label for="imagen" class="form-label">Imagen de portada</label>
+  <input type="text" [(ngModel)]="pelicula.img" class="form-control" id="imagen" name="imagen" pattern="[a-z0-9._%+-]+\.[a-z]{3,4}$" #imagen="ngModel">
+  <div *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)"  class="alert alert-danger">
+    <div *ngIf="imagen.errors"> Formato incorrecto</div>
+  </div>
+  </div>
+  <div class="mb-3">
+  <label for="sinopsis" class="form-label">Sinopsis</label>
+  <textarea class="form-control" [(ngModel)]="pelicula.sinopsis" id="sinopsis" rows="5" name="sinopsis" required #sinopsis="ngModel"></textarea>
+  <div *ngIf="sinopsis.invalid && (sinopsis.dirty || sinopsis.touched)"  class="alert alert-danger">
+    <div *ngIf="sinopsis.errors">Sinopsis obligatoria </div>
+  </div>
+
+
+
+  </div>
+  <button type="submit"  (ngSubmit)="altaPelicula()" class="btn btn-primary"  [disabled]="formulario.invalid">Alta película</button>
+  </form>
+ </div>
+

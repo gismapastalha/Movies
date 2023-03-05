@@ -1,0 +1,23 @@
+<h1 class="text-center">Películas disponibles</h1>
+<hr>
+<div class="row row-cols-4">
+  <div class="card animated fadeIn fast" *ngFor="let pelicula of peliculas">
+  <img class="card-img-top"  [src]="'assets/img/'+pelicula.img" [alt]="pelicula.titulo">
+      <div class="card-body">
+      <h4 class="card-title">{{ pelicula.titulo }}</h4>
+      <p class="card-text">{{ pelicula.sinopsis | smartTruncate: 100 }}</p>
+      <p class="card-text">Director: {{ pelicula.direccion }}</p>
+      <p class="card-text">
+      <small class="text-muted">Año: {{ pelicula.anio }}</small>
+      </p>
+      <a [routerLink]="['/peliculas', pelicula.id]" class="btn btn-outline-primary btn-block">Ver más...</a>
+      </div>
+  </div>
+</div>
+<div class="row animated fadeIn fast" *ngIf="peliculas.length == 0">
+  <div class="col-md-12">
+    <div class="alert alert-info" role="alert"> No se han encontrado peliculas</div>
+  </div>
+</div>
+
+
